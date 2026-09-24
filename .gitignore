@@ -1,0 +1,50 @@
+# Python
+build/
+dist/
+.venv/
+__pycache__/
+__pypackages__/
+*.egg-info/
+*.pyc
+*.pyo
+
+# Type checking, linting, and test reports
+.mypy_cache/
+.ruff_cache/
+.pytype/
+.tox/
+.nox/
+htmlcov/
+coverage.xml
+
+# Environment variables / secrets
+.env
+.env.*
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Logs
+*.log
+
+# VS Code
+.vscode/
+
+# RAG local data
+data/uploads/
+data/chroma/
+
+# Node / React
+frontend/node_modules/
+frontend/dist/
+
+# Testing / cache
+.pytest_cache/
+.coverage
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Keep a safe environment-variable template in Git
+!.env.example
