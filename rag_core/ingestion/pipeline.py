@@ -6,7 +6,7 @@ from rag_core.embeddings.ollama import embed_chunks
 from rag_core.vectorstore.chroma import store_data
 
 def docs_pipeline(file, domain):
-    pdf_path = Path(__file__).resolve().parent[2] / "data" / "uploads" / file
+    pdf_path = Path(__file__).resolve().parents[2] / "data" / "uploads" / file
 
     doc = load_pdf(domain, pdf_path)
     chunks = split_documents(doc)

@@ -1,11 +1,12 @@
-import chromadb
 from pathlib import Path
+import chromadb
 
 
 DB_PATH = Path(__file__).resolve().parents[2] / "data" / "chroma"
 
-client = chromadb.PersistentClient(path=str(DB_PATH))
-collection = client.get_or_create_collection(name="knowledge_base")
+def get_collection():
+    client = chromadb.PersistentClient(path=str(DB_PATH))
+    return client.get_or_create_collection(name="knowledge_base")
 
 def store_data(ids_list: list, embeddings_list: list, metadatas_list: list, chunks_list: list):
     msg = "Saving data to vectoreDB..."
@@ -33,6 +34,8 @@ def store_data(ids_list: list, embeddings_list: list, metadatas_list: list, chun
 
     print(msg)
 
+    collection = get_collection()
+
     collection.upsert(
         ids = ids_list,
         embeddings = embeddings_list,
@@ -45,3 +48,11 @@ def store_data(ids_list: list, embeddings_list: list, metadatas_list: list, chun
         "stored_count": len(ids_list),
         "message": "File saved successfully."
     }
+
+def query_collection(query_embedding, n_results=5):
+    collection = get_collection()
+
+    return collection.query(
+        query_embeddings = [query_embedding],
+        n_results = n_results
+    )

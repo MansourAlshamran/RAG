@@ -1,7 +1,7 @@
-from langchain_core.documents import Document
 from pathlib import Path
 import re
 from pypdf import PdfReader
+from langchain_core.documents import Document
 
 
 def clean_text(text: str) -> str:
@@ -27,5 +27,3 @@ def load_pdf(domain, file_path: str | Path) -> list[Document]:
         )
         for i, page in enumerate(reader.pages)
     ]
-
-
